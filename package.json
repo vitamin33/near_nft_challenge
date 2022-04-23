@@ -24,11 +24,17 @@
     "near-cli": "~2.1.1",
     "nodemon": "~2.0.3",
     "parcel-bundler": "~1.12.4",
-    "shelljs": "~0.8.4"
+    "shelljs": "~0.8.4",
+    "buffer": "^6.0.3",
+    "process": "^0.11.10"
   },
   "dependencies": {
-    "near-api-js": "~0.43.1",
-    "regenerator-runtime": "~0.13.5"
+    "regenerator-runtime": "~0.13.5",
+    "ipfs-car": "^0.7.0",
+    "near-api-js": "^0.44.2",
+    "nft.storage": "^6.2.0",
+    "parcel": "^2.4.1",
+    "web3.storage": "^4.2.0"
   },
   "jest": {
     "testEnvironment": "near-cli/test_environment",
