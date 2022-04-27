@@ -1,46 +1,27 @@
+
 {
-  "name": "nft_example",
-  "version": "0.0.1",
-  "license": "UNLICENSED",
+  "name": "spring_near_nft_minte",
+  "version": "1.0.0",
   "scripts": {
-    "build": "npm run build:contract && npm run build:web",
-    "build:contract": "node contract/compile.js",
-    "build:contract:debug": "node contract/compile.js --debug",
-    "build:web": "parcel build src/index.html --public-url ./",
-    "dev:deploy:contract": "near dev-deploy",
-    "deploy:contract": "near deploy",
-    "deploy:pages": "gh-pages -d dist/",
-    "deploy": "npm run build && npm run deploy:contract && npm run deploy:pages",
-    "prestart": "npm run build:contract:debug && npm run dev:deploy:contract",
-    "start": "echo The app is starting! It will automatically open in your browser when ready && env-cmd -f ./neardev/dev-account.env parcel src/index.html --open",
-    "dev": "nodemon --watch contract/src -e rs --exec \"npm run start\"",
-    "test": "npm run build:contract:debug && cd contract && cargo test -- --nocapture && cd .. && jest test --runInBand"
+    "build-run-client": "parcel src/index.html",
+    "build-client": "parcel build src/index.html --public-url .",
+    "build-contract": "cd contracts && cargo build --target wasm32-unknown-unknown --release",
+    "deploy-contract": "npm run build-contract && near dev-deploy --wasmFile contracts/target/wasm32-unknown-unknown/release/spring_near_nft_minter.wasm",
+    "contract": "npm run build-contract && rd /s /q neardev && near dev-deploy --wasmFile contracts/target/wasm32-unknown-unknown/release/spring_near_nft_minter.wasm"
   },
-  "devDependencies": {
-    "env-cmd": "~10.1.0",
-    "gh-pages": "~3.1.0",
-    "jest": "~26.6.2",
-    "jest-environment-node": "~26.6.2",
-    "near-cli": "~2.1.1",
-    "nodemon": "~2.0.3",
-    "parcel-bundler": "~1.12.4",
-    "shelljs": "~0.8.4",
-    "buffer": "^6.0.3",
-    "process": "^0.11.10"
-  },
+  "author": "@ligebit",
+  "license": "ISC",
   "dependencies": {
-    "regenerator-runtime": "~0.13.5",
     "ipfs-car": "^0.7.0",
     "near-api-js": "^0.44.2",
     "nft.storage": "^6.2.0",
     "parcel": "^2.4.1",
     "web3.storage": "^4.2.0"
   },
-  "jest": {
-    "testEnvironment": "near-cli/test_environment",
-    "testPathIgnorePatterns": [
-      "<rootDir>/contract/",
-      "<rootDir>/node_modules/"
-    ]
-  }
+  "devDependencies": {
+    "buffer": "^6.0.3",
+    "process": "^0.11.10"
+  },
+  "main": "index.js",
+  "description": ""
 }
